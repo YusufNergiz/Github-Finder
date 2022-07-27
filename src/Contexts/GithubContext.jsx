@@ -10,6 +10,7 @@ export function GithubProvider({children}) {
     const initialState = {
         users: [],
         user: {},
+        repos: [],
         loading: false,
         currentUser: 'U'
     }
@@ -25,7 +26,7 @@ export function GithubProvider({children}) {
         })
         
     }
-    console.log(state.users)
+
     // set Loading to true
     const setLoading = () => {
         dispatch({
@@ -64,7 +65,28 @@ export function GithubProvider({children}) {
         }
     }
 
-    return <GithubContext.Provider value={{loading: state.loading, users: state.users, user: state.user, searchUsers, loginCurrentUser, currentUser: state.currentUser, clearUsers, getUser}}>{children}</GithubContext.Provider>
+    const getRepos = async (login) => {
+        setLoading();
+
+        const params = new URLSearchParams({
+            sort: 'created'
+        })
+
+        const response = await fetch(`https://api.github.com/users/${login}/repos?${params}`)
+
+        if (response.status === 404) {
+            window.location = '/notfound'
+        }
+        else {
+            const data = await response.json();
+            dispatch({
+                type: 'GET_USER_REPOS',
+                payload: data
+            })
+        }
+    }
+
+    return <GithubContext.Provider value={{loading: state.loading, users: state.users, user: state.user, repos: state.repos, getRepos, searchUsers, loginCurrentUser, currentUser: state.currentUser, clearUsers, getUser}}>{children}</GithubContext.Provider>
 }
 
 export default GithubContext;
