@@ -2,6 +2,8 @@
 
 ## Tech used: Tailwind, DaisyUI, HTML, CSS, JavaScript, React, Github REST API
 
+### github-finder-rho-six.vercel.app
+
 
 ![](images/home.PNG)
 ------------------------------
