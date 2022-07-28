@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import GithubContext from "../Contexts/GithubContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Spinner from "../Layout/Spinner";
 import Navbar from "../Layout/Navbar";
 import { GoLocation } from 'react-icons/go'

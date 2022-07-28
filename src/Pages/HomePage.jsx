@@ -1,6 +1,6 @@
 import { FaGithub, FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import GithubContext from '../Contexts/GithubContext';
 
 const HomePage = () => {
